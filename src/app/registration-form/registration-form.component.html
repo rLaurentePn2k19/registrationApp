@@ -1,0 +1,46 @@
+
+<mat-card class="example-card" style="width: 15rem; margin-top: 10%; margin-left: 35%;">
+    <form class="example-form" (ngSubmit)="onSubmit()" formGroupName="userInformation">
+        <mat-card-header>
+            <mat-card-title >Register</mat-card-title >
+          </mat-card-header>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Full name</mat-label>
+                <input matInput placeholder="e.g Rangie Flores Laurente" name="Fullname" FormControlName="fullname">
+                <mat-hint *ngIf="false">Hint</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Enter your age" type="number"  name="Age" FormControlName="age">
+                <mat-hint *ngIf="false">Hint</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="e.g Rangie25 " FormControlName="username" name="Username">
+                <mat-hint *ngIf="false">Hint</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="e.g rangiela67@gmail.com" type="email" FormControlName="email" name="Email"> 
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+            
+        </p>
+        
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="●●●●●●●●●●" type="password" FormControlName="password" name="Password">
+                <mat-hint *ngIf="false">Hint</mat-hint>
+            </mat-form-field>
+        </p>
+        <button mat-raised-button color="accent" type="submit" >Submit</button>
+    </form>
+</mat-card>

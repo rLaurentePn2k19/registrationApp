@@ -1,0 +1,17 @@
+import { Component, OnInit , Input} from '@angular/core';
+
+@Component({
+  selector: 'app-registration-list',
+  templateUrl: './registration-list.component.html',
+  styleUrls: ['./registration-list.component.css']
+})
+export class RegistrationListComponent implements OnInit {
+
+  @Input() formData : string;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
