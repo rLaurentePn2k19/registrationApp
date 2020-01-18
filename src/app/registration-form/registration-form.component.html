@@ -42,7 +42,7 @@
                         </mat-form-field>
                     </div>
                     <button mat-raised-button color="accent" type="submit" [disabled]="!userInformation.valid" *ngIf="!show">Submit</button>
-                    <button mat-raised-button color="accent" type="submit" *ngIf="show" (click)="dataToEdit(saveData)">Save</button>
+                    <button mat-raised-button color="accent" type="submit" *ngIf="show" (click)="saveEditData(saveData)">Save</button>
                 </form>
             </div>
         </mat-card>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
-import {account } from '../account'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { account } from '../account'
 
 @Component({
   selector: 'app-registration-form',
@@ -16,15 +16,15 @@ export class RegistrationFormComponent implements OnInit {
   public saveEdit = false
 
   show = false
-  
-  
+
+
   public info = new Array<account>();
 
   constructor(private fb: FormBuilder) {
 
   }
 
-  userInformation : FormGroup =  this.fb.group({
+  userInformation: FormGroup = this.fb.group({
     fullname: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
@@ -32,7 +32,7 @@ export class RegistrationFormComponent implements OnInit {
   })
 
   ngOnInit() {
-    
+
   }
 
   onSubmit() {
@@ -40,8 +40,12 @@ export class RegistrationFormComponent implements OnInit {
     this.info.push(this.userInformation.value)
   }
 
-  dataToEdit(data){
-    this.show = !this.show;
-    this.saveEdit = true
+  dataToEdit(data) {
+
+  }
+
+  saveEditData() {
+
+
   }
 }

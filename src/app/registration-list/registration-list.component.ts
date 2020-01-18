@@ -9,9 +9,8 @@ import { account } from '../account';
 })
 export class RegistrationListComponent implements OnInit {
 
-  // @Input() formData = new Array<account>();
   @Output() editedData = new EventEmitter();
-  displayedColumns: string[] = ['name', 'username','email','password'];
+  displayedColumns: string[] = ['name', 'username', 'email', 'password'];
 
   @Input() formData: Array<account>;
 
@@ -19,10 +18,16 @@ export class RegistrationListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
   editData(data) {
     this.editedData.emit(data)
+    for (var i = 0; i < this.formData.length; i++) {
+      if (data == this.formData[i]) {
+        this.formData.splice(i, i + 1)
+      }
+      console.log(this.formData)
+    }
   }
 }
