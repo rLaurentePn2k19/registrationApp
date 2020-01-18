@@ -1,46 +1,54 @@
+<mat-grid-list cols="2" rowHeight="2:2">
+    <mat-grid-tile>
+        <mat-card class="example-card" style="width: 15rem;">
+            <div class="example-container">
+                <form [formGroup]="userInformation" class="example-container" (ngSubmit)="onSubmit()">
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Full name</mat-label>
+                            <input matInput placeholder="e.g Rangie Flores Laurente" name="Fullname" formControlName="fullname">
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('fullname').hasError('required')  && ( userInformation.controls['fullname']?.touched || userInformation.controls['fullname']?.dirty) ">This
+                                field is required</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Enter username" name="Username" formControlName="username">
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('username').hasError('required')  && ( userInformation.controls['username']?.touched || userInformation.controls['username']?.dirty) ">This
+                                field is required</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="e.g @gmail.com" name="Email" formControlName="email">
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('email').hasError('required')  && ( userInformation.controls['email']?.touched || userInformation.controls['email']?.dirty) ">This
+                                field is required</mat-hint>
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.controls.email.hasError('pattern') ; else validEmail">Invalid
+                                Email</mat-hint>
+                            <ng-template #validEmail>
+                                <p [style.color]="successColor" *ngIf="userInformation.controls.email.valid">✓</p>
+                            </ng-template>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Enter password" type="password" name="Password"
+                                formControlName="password">
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('password').hasError('required')  && ( userInformation.controls['password']?.touched || userInformation.controls['password']?.dirty)">This
+                                field is required</mat-hint>
+                            <mat-hint [style.color]="dangerColor" *ngIf="userInformation.controls.password.hasError('pattern') ; else strongPassword">Weak
+                                password</mat-hint>
+                            <ng-template #strongPassword>
+                                <p [style.color]="successColor" *ngIf="userInformation.controls.password.valid">Strong
+                                    password</p>
+                            </ng-template>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button color="accent" type="submit" [disabled]="!userInformation.valid" *ngIf="!show">Submit</button>
+                    <button mat-raised-button color="accent" type="submit" *ngIf="show" (click)="dataToEdit(saveData)">Save</button>
+                </form>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <app-registration-list [formData]="info" (editedData)="dataToEdit($event)"></app-registration-list>
+    </mat-grid-tile>
 
-<mat-card class="example-card" style="width: 15rem; margin-top: 10%; margin-left: 35%;">
-    <form class="example-form" (ngSubmit)="onSubmit()" formGroupName="userInformation">
-        <mat-card-header>
-            <mat-card-title >Register</mat-card-title >
-          </mat-card-header>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Full name</mat-label>
-                <input matInput placeholder="e.g Rangie Flores Laurente" name="Fullname" FormControlName="fullname">
-                <mat-hint *ngIf="false">Hint</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Age</mat-label>
-                <input matInput placeholder="Enter your age" type="number"  name="Age" FormControlName="age">
-                <mat-hint *ngIf="false">Hint</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="e.g Rangie25 " FormControlName="username" name="Username">
-                <mat-hint *ngIf="false">Hint</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="e.g rangiela67@gmail.com" type="email" FormControlName="email" name="Email"> 
-                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
-            </mat-form-field>
-            
-        </p>
-        
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="●●●●●●●●●●" type="password" FormControlName="password" name="Password">
-                <mat-hint *ngIf="false">Hint</mat-hint>
-            </mat-form-field>
-        </p>
-        <button mat-raised-button color="accent" type="submit" >Submit</button>
-    </form>
-</mat-card>
+</mat-grid-list>

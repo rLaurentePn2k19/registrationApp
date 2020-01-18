@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
+import {account } from '../account'
 
 @Component({
   selector: 'app-registration-form',
@@ -8,35 +9,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class RegistrationFormComponent implements OnInit {
 
-  public userInformation: FormGroup;
   public emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
   public passwordPattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
-  private fb = new FormBuilder();
+  public dangerColor = "red"
+  public successColor = "green"
+  public saveEdit = false
 
+  show = false
+  
+  
+  public info = new Array<account>();
 
-  @Output() onClick = new EventEmitter();
+  constructor(private fb: FormBuilder) {
 
-  // constructor(private fb : FormBuilder) {
+  }
 
-  // }
-  constructor() { }
-
-
-  // constructor() {
-  // }
+  userInformation : FormGroup =  this.fb.group({
+    fullname: ['', Validators.required],
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]]
+  })
 
   ngOnInit() {
-    this.userInformation = this.fb.group({
-      fullname: ['', Validators.required],
-      age: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['', [Validators.required, Validators.pattern(this.passwordPattern)]]
-    })
-  }
-  onSubmit() {
-    console.log("test")
-    this.onClick.emit(this.userInformation)
+    
   }
 
+  onSubmit() {
+    console.log(this.userInformation.value)
+    this.info.push(this.userInformation.value)
+  }
+
+  dataToEdit(data){
+    this.show = !this.show;
+    this.saveEdit = true
+  }
 }
