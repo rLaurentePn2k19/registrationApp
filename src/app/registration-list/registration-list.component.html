@@ -1,8 +1,15 @@
-<mat-card class="example-card" style="width: 35rem;">
+<mat-card class="example-card" style="width: 35rem;" style="background-image: url('https://i.pinimg.com/originals/4c/89/d1/4c89d1efe9d30be3bb5457a551d44c89.jpg');">
     <div class="example-container">
+        <mat-card-title>
+            <h5 class="text-center">List of accounts registered</h5>
+        </mat-card-title><br>
+        <mat-card-subtitle>
+            <h6>Registered account/s: {{ formData.length }}</h6>
+        </mat-card-subtitle>
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">id</th>
                     <th scope="col">Fullname</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
@@ -12,13 +19,19 @@
             </thead>
             <tbody>
                 <tr *ngFor="let userData of formData; let i = index" [attr.data-index]="i">
+                    <th>{{ i + 1}}</th>
                     <th>{{ userData.fullname}}</th>
                     <td>{{ userData.username}}</td>
                     <td>{{ userData.email}}</td>
                     <td>{{ userData.password}}</td>
-                    <td><button mat-raised-button color="accent" (click)="editData(userData)">Edit</button></td>
+                    <td>
+                        <button mat-mini-fab color="warn" (click)="editData(userData)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">create</mat-icon>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <button mat-raised-button color="accent" (click)="back()">Back</button>
     </div>
 </mat-card>

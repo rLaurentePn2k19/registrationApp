@@ -1,5 +1,6 @@
 export class account {
-    name: string;
+    id: any;
+    fullname: string;
     username: string;
     email: string;
     password: string;

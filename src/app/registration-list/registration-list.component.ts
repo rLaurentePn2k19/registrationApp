@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { account } from '../account';
-
+import { account } from '../data-model/account';
 
 @Component({
   selector: 'app-registration-list',
@@ -10,24 +9,35 @@ import { account } from '../account';
 export class RegistrationListComponent implements OnInit {
 
   @Output() editedData = new EventEmitter();
+  @Output() hideComponent = new EventEmitter();
+  @Output() backEvent = new EventEmitter();
+
   displayedColumns: string[] = ['name', 'username', 'email', 'password'];
+  show = false
 
   @Input() formData: Array<account>;
 
+  constructor() {
 
-  constructor() { }
+  }
 
   ngOnInit() {
 
   }
 
   editData(data) {
+    console.log(data.email + "this is data to be passed")
     this.editedData.emit(data)
-    for (var i = 0; i < this.formData.length; i++) {
-      if (data == this.formData[i]) {
-        this.formData.splice(i, i + 1)
-      }
-      console.log(this.formData)
-    }
+    this.hideComponent.emit(this.show)
+    // for (var i = 0; i < this.formData.length; i++) {
+    //   if (data == this.formData[i]) {
+    //     this.formData.splice(i, 1)
+    //   }
+    //   console.log(this.formData)
+    // }
+  }
+
+  back() {
+    this.backEvent.emit(!this.show)
   }
 }
