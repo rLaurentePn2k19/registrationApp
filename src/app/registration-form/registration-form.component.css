@@ -5,3 +5,8 @@
 #card{
   color: azure;
 }
+#clrBtn{
+  margin-left: 70%; 
+  margin-top: -17.5% ;
+  float: right;
+}

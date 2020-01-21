@@ -1,5 +1,5 @@
-<mat-card class="example-card" style="width: 35rem;" style="background-image: url('https://i.pinimg.com/originals/4c/89/d1/4c89d1efe9d30be3bb5457a551d44c89.jpg');">
-    <div class="example-container">
+<mat-card class="example-card" style="width: 60rem; ">
+    <div class="example-container" >
         <mat-card-title>
             <h5 class="text-center">List of accounts registered</h5>
         </mat-card-title><br>
@@ -10,22 +10,27 @@
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Fullname</th>
+                    <!-- <th scope="col">Fullname</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
+                    <th scope="col">Action</th> -->
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let userData of formData; let i = index" [attr.data-index]="i">
+                <tr *ngFor="let userData of formData ; let i = index">
+                <!-- <tr *ngFor="let userData of testData; let i = index" [attr.data-index]="i"> -->
+                    <!-- <th>{{ i + 1}}</th> -->
                     <th>{{ i + 1}}</th>
-                    <th>{{ userData.fullname}}</th>
-                    <td>{{ userData.username}}</td>
+                    <th>{{ userData.name}}</th>
                     <td>{{ userData.email}}</td>
-                    <td>{{ userData.password}}</td>
+                    <td>{{ userData.phone}}</td>
                     <td>
-                        <button mat-mini-fab color="warn" (click)="editData(userData)">
+                        <button mat-mini-fab color="accent" (click)="editData(userData)">
                             <mat-icon aria-hidden="false" aria-label="Example home icon">create</mat-icon>
                         </button>
                     </td>

@@ -9,10 +9,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { RegistrationListComponent } from './registration-list/registration-list.component';
+import { AppRoutingModule } from './app-routing.module';
+import { UserServiceService } from './services/user-service.service'
 
 @NgModule({
   declarations: [
@@ -21,6 +25,8 @@ import { RegistrationListComponent } from './registration-list/registration-list
     RegistrationListComponent
   ],
   imports: [
+    DragDropModule,
+    HttpClientModule,
     SweetAlert2Module,
     // swal format [title: string, text: string (, icon: string)]
     SweetAlert2Module.forRoot(),
@@ -34,9 +40,10 @@ import { RegistrationListComponent } from './registration-list/registration-list
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

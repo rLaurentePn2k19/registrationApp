@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { account } from '../data-model/account'
 import Swal from 'sweetalert2';
+import { UserServiceService } from '../services/user-service.service';
+
 
 @Component({
   selector: 'app-registration-form',
@@ -16,7 +18,7 @@ export class RegistrationFormComponent implements OnInit {
   public successColor = "green"
   public saveEdit = false
   userInformation: FormGroup
-  width = "15rem"
+  width = "15rem" 
   show = false
   btn = false
   edit = false
@@ -24,11 +26,22 @@ export class RegistrationFormComponent implements OnInit {
 
   public info = new Array<account>();
 
-  constructor(private fb: FormBuilder) { }
+  public list_data = new Array<account>();
+
+  constructor
+    (
+    private fb: FormBuilder,
+    private userService: UserServiceService
+    ) { }
 
 
   ngOnInit() {
     this.dataToEdit(new account())
+    this.userService.getUser()
+      .subscribe(data => {
+        this.list_data = data
+        console.log(this.list_data)
+      })
   }
 
   onSubmit(form) {
@@ -41,14 +54,30 @@ export class RegistrationFormComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
-      this.info.forEach(element => {
+      this.list_data.forEach(element => {
         if (element.id == this.userInformation.value.id) {
-          element.email = this.userInformation.value.email
-          element.fullname = this.userInformation.value.fullname
-          element.username = this.userInformation.value.username
-          element.password = this.userInformation.value.password
+          this.userService.updateUser(this.userInformation.value.id).subscribe(data => {
+            console.log(data)
+          })
+          this.list_data.forEach(element => {
+            if (element.id == this.userInformation.value.id) {
+              element.email = this.userInformation.value.email
+              element.name = this.userInformation.value.name
+              element.phone = this.userInformation.value.phone
+            }
+          });
+          console.log(this.list_data)
         }
       });
+      // this.info.forEach(element => {
+      //   if (element.id == this.userInformation.value.id) {
+      // element.email = this.userInformation.value.email
+      // element.name = this.userInformation.value.name
+      // // element.username = this.userInformation.value.username
+      // // element.password = this.userInformation.value.password
+      // element.phone = this.userInformation.value.phone
+      //   }
+      // });
       this.edit = true
     } else {
       Swal.fire({
@@ -58,20 +87,28 @@ export class RegistrationFormComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       })
-      this.userInformation.value.id = this.info.length + 1
-      this.info.push(this.userInformation.value)
-
+      this.userService.addUser(this.userInformation.value).subscribe(data => {
+        // data.id = + this.list_data.length + 1
+        data.id =+ this.list_data.length + 1
+        this.list_data.push(data)
+        console.log(this.list_data)
+      })
     }
+    form.form.reset();
+  }
+
+  clear(form) {
     form.form.reset();
   }
 
   dataToEdit(data) {
     this.userInformation = this.fb.group({
       id: [data.id],
-      fullname: [data.fullname, Validators.required],
-      username: [data.username, Validators.required],
+      name: [data.name, Validators.required],
+      // username: [data.username, Validators.required],
       email: [data.email, [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: [data.password, [Validators.required, Validators.pattern(this.passwordPattern)]]
+      // password: [data.password, [Validators.required, Validators.pattern(this.passwordPattern)]]
+      phone: [data.phone, Validators.required]
     })
     this.edit = !this.edit
   }
