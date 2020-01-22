@@ -1,8 +1,9 @@
-<mat-grid-list cols="1" rowHeight="1:0.8">
+<!-- <mat-grid-list cols="1" rowHeight="1:1"> -->
+<mat-grid-list cols="1" rowHeight="1:1">
     <mat-grid-tile>
-        <mat-card class="example-card" id="card" [style.width]="width" *ngIf="!show" cdkDrag [ngStyle]="{'background-image': 'url(' + photo + ')', 'margin-top': '-15%'}">
+        <mat-card class="example-card" id="card" [style.width]="width" *ngIf="!show" cdkDrag [ngStyle]="{'background-image': 'url(' + photo + ')', 'margin-top': '-60%'}">
             <mat-card-title>
-                <h5 class="text-center">Add information</h5>
+                <h4 class="text-center">Register</h4>
             </mat-card-title>
             <mat-card-content>
                 <div class="example-container">
@@ -16,6 +17,12 @@
                                 <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('name').hasError('required')  && ( userInformation.controls['name']?.touched || userInformation.controls['name']?.dirty) ">This
                                     field is required</mat-hint>
                             </mat-form-field>
+                            <!-- <mat-form-field appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input matInput placeholder="Enter username" name="Username" formControlName="username">
+                                <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('username').hasError('required')  && ( userInformation.controls['username']?.touched || userInformation.controls['username']?.dirty) ">This
+                                    field is required</mat-hint>
+                            </mat-form-field> -->
                             <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input matInput placeholder="e.g @gmail.com" name="Email" formControlName="email">
@@ -33,6 +40,17 @@
                                 <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('phone').hasError('required')  && ( userInformation.controls['phone']?.touched || userInformation.controls['phone']?.dirty)">This
                                     field is required
                                 </mat-hint>
+                                <!-- <mat-label>Password</mat-label>
+                                <input matInput placeholder="Enter password" type="password" name="Password"
+                                    formControlName="password" >
+                                <mat-hint [style.color]="dangerColor" *ngIf="userInformation.get('password').hasError('required')  && ( userInformation.controls['password']?.touched || userInformation.controls['password']?.dirty)">This
+                                    field is required</mat-hint>
+                                <mat-hint [style.color]="dangerColor" *ngIf="userInformation.controls.password.hasError('pattern') ; else strongPassword">Weak
+                                    password</mat-hint>
+                                <ng-template #strongPassword>
+                                    <p [style.color]="successColor" *ngIf="userInformation.controls.password.valid">Strong
+                                        password</p>
+                                </ng-template> -->
                             </mat-form-field>
                         </div>
                         <button mat-raised-button color="accent" type="submit" [disabled]="!userInformation.valid"
@@ -43,8 +61,7 @@
                 </div>
             </mat-card-content>
         </mat-card>
-        <app-registration-list [formData]="list_data" (editedData)="dataToEdit($event)" *ngIf="show" (hideComponent)="hide($event)"
-            (backEvent)="back($event)" (testBack)="pre($event)"></app-registration-list>
+        <app-registration-list [formData]="list_data" (editedData)="dataToEdit($event)" (hideComponent)="hide($event)"
+            (backEvent)="back($event)"></app-registration-list>
     </mat-grid-tile>
-    <div></div>
 </mat-grid-list>

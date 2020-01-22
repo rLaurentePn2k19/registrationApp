@@ -1,20 +1,18 @@
-<mat-card class="example-card" style="width: 60rem; ">
-    <div class="example-container" >
+<mat-card class="example-card" cdkDrag style="margin-top: 10%;width: 60rem; background-image: url('https://www.itl.cat/pngfile/big/192-1925345_best-10-rainbow-wallpaper-ideas-on-pinterest-pastel.jpg')">
+    <div class="example-container">
         <mat-card-title>
             <h5 class="text-center">List of accounts registered</h5>
         </mat-card-title><br>
         <mat-card-subtitle>
             <h6>Registered account/s: {{ formData.length }}</h6>
+            <button mat-mini-fab color="primary" (click)="back()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+            </button>
         </mat-card-subtitle>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <!-- <th scope="col">Fullname</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Action</th> -->
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Contact</th>
@@ -23,20 +21,26 @@
             </thead>
             <tbody>
                 <tr *ngFor="let userData of formData ; let i = index">
-                <!-- <tr *ngFor="let userData of testData; let i = index" [attr.data-index]="i"> -->
+                    <!-- <tr *ngFor="let userData of testData; let i = index" [attr.data-index]="i"> -->
                     <!-- <th>{{ i + 1}}</th> -->
-                    <th>{{ i + 1}}</th>
+                    <th>{{ userData.id}}</th>
                     <th>{{ userData.name}}</th>
                     <td>{{ userData.email}}</td>
                     <td>{{ userData.phone}}</td>
                     <td>
-                        <button mat-mini-fab color="accent" (click)="editData(userData)">
+                        <button mat-mini-fab color="primary" (click)="delData(userData)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                        </button>&nbsp;
+                        <button mat-mini-fab color="primary" (click)="editData(userData)">
                             <mat-icon aria-hidden="false" aria-label="Example home icon">create</mat-icon>
+                        </button>&nbsp;
+                        <button mat-mini-fab color="accent">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="viewData(userData.id)">remove_red_eye</mat-icon>
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button mat-raised-button color="accent" (click)="back()">Back</button>
+
     </div>
 </mat-card>

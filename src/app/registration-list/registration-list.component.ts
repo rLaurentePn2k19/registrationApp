@@ -13,6 +13,7 @@ export class RegistrationListComponent implements OnInit {
   @Output() editedData = new EventEmitter();
   @Output() hideComponent = new EventEmitter();
   @Output() backEvent = new EventEmitter();
+  @Output() testEvent = new EventEmitter();
 
   displayedColumns: string[] = ['name', 'username', 'email', 'password'];
   show = false
@@ -27,40 +28,50 @@ export class RegistrationListComponent implements OnInit {
   ngOnInit() {
   }
 
-  editData(data) {
+  delData(data) {
     Swal.fire({
-      title: 'Delete or Edit?',
+      title: 'You want to delete it?',
       // text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonText: 'Edit',
+      cancelButtonText: 'Cancel',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Delete'
     }).then((result) => {
       if (result.value) {
         this.deleteData(data)
         Swal.fire(
-          'Delete',
+          'Deleted!',
           'Account has been deleted.',
           'success'
         )
-      } else {
-        this.editedData.emit(data)
-        this.hideComponent.emit(this.show)
       }
     })
   }
 
+  editData(data) {
+    this.editedData.emit(data)
+    console.log(data)
+    this.hideComponent.emit(this.show)
+  }
+
+
   deleteData(data) {
     console.log(data)
     this.userService.deleteUser(data.id).subscribe(deleteData => {
-      console.log(deleteData)
       this.formData.splice(this.formData.indexOf(data), 1)
+      console.log(this.formData)
     })
   }
 
   back() {
     this.backEvent.emit(!this.show)
   }
+
+  viewData(id) {
+    console.log(id)
+    this.userService.viewRoute(id)
+  }
+
 }

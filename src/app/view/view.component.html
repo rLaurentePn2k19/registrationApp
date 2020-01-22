@@ -1,0 +1,25 @@
+<mat-grid-list cols="1" rowHeight="1:0.8">
+    <mat-grid-tile>
+        <mat-card class="example-card" [style.width]="width" cdkDrag [ngStyle]="{'background-image': 'url(' + photo + ')', 'margin-top': '-25%'}">
+            <mat-card-title>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="example-container">
+                    <div class="form-group">
+                        <h5>id: {{dataList.id}}</h5>
+                    </div>
+                    <div class="form-group">
+                        <h5>Name: {{dataList.name}}</h5>
+                    </div>
+                    <div class="form-group">
+                        <h5>Email: {{dataList.email}}</h5>
+                    </div>
+                    <div class="form-group">
+                        <h5>Contact #: {{dataList.phone}}</h5>
+                    </div>
+                </div>
+                <button mat-raised-button color="warn" (click)="back()">Back</button>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

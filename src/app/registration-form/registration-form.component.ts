@@ -18,7 +18,7 @@ export class RegistrationFormComponent implements OnInit {
   public successColor = "green"
   public saveEdit = false
   userInformation: FormGroup
-  width = "15rem" 
+  width = "15rem"
   show = false
   btn = false
   edit = false
@@ -57,7 +57,7 @@ export class RegistrationFormComponent implements OnInit {
       this.list_data.forEach(element => {
         if (element.id == this.userInformation.value.id) {
           this.userService.updateUser(this.userInformation.value.id).subscribe(data => {
-            console.log(data)
+            console.log(JSON.stringify(data))
           })
           this.list_data.forEach(element => {
             if (element.id == this.userInformation.value.id) {
@@ -69,15 +69,6 @@ export class RegistrationFormComponent implements OnInit {
           console.log(this.list_data)
         }
       });
-      // this.info.forEach(element => {
-      //   if (element.id == this.userInformation.value.id) {
-      // element.email = this.userInformation.value.email
-      // element.name = this.userInformation.value.name
-      // // element.username = this.userInformation.value.username
-      // // element.password = this.userInformation.value.password
-      // element.phone = this.userInformation.value.phone
-      //   }
-      // });
       this.edit = true
     } else {
       Swal.fire({
@@ -88,8 +79,12 @@ export class RegistrationFormComponent implements OnInit {
         timer: 1500
       })
       this.userService.addUser(this.userInformation.value).subscribe(data => {
-        // data.id = + this.list_data.length + 1
-        data.id =+ this.list_data.length + 1
+        console.log(data)
+        console.log(JSON.stringify(data))
+        var last_index = this.list_data[this.list_data.length - 1].id 
+        console.log(last_index + " last index of the list")
+        data.id =+ last_index + 1
+        console.log(data.id + " object id")
         this.list_data.push(data)
         console.log(this.list_data)
       })
@@ -102,6 +97,8 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   dataToEdit(data) {
+    console.log(JSON.stringify(data))
+    console.log(data)
     this.userInformation = this.fb.group({
       id: [data.id],
       name: [data.name, Validators.required],
