@@ -63,3 +63,52 @@
     visibility: hidden;
   }
 } */
+
+
+#testBackground{
+  background-image: url('https://wallpaperset.com/w/full/6/c/4/176826.jpg');
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* padding: 15px; */
+  height: 100%;
+  width: 100%;
+  filter: grayscale(100%);
+}
+
+#innerDiv{
+  border: 1px solid white;
+  padding: 3%;
+}
+
+#myDiv {
+  top: 200px;
+  margin: auto;
+  width: 50%;
+  position: relative;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 5s;
+  padding: 5%;
+  border: 2px solid white;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes example {
+  0%   { left:0px; top:0px;}
+  25%  { left:200px; top:0px;}
+  50%  { left:200px; top:500px;}
+  75%  { left:-100px; top:500px;}
+  100% {background-color:red; left:0px; top:200px;}
+  
+}

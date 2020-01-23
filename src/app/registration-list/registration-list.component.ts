@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { UserServiceService } from '../services/user-service.service';
 
 @Component({
-  selector: 'app-registration-list',
+  selector: 'app-registration-list', 
   templateUrl: './registration-list.component.html',
   styleUrls: ['./registration-list.component.css']
 })
@@ -65,7 +65,7 @@ export class RegistrationListComponent implements OnInit {
     })
   }
 
-  back() {
+  addInfo() {
     this.backEvent.emit(!this.show)
   }
 

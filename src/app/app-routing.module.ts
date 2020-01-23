@@ -8,7 +8,10 @@ import { ErrorComponent} from  './error/error.component'
 
 const routes: Routes = [
   {
-    path: '', component: HomepageComponent // default router view
+    path: '', redirectTo: '/home', pathMatch: 'full' // default router view
+  },
+  {
+    path: 'home', component: HomepageComponent
   },
   {
     path: 'form', component: RegistrationFormComponent

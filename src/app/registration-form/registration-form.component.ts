@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { account } from '../data-model/account'
 import Swal from 'sweetalert2';
@@ -32,10 +32,12 @@ export class RegistrationFormComponent implements OnInit {
     (
     private fb: FormBuilder,
     private userService: UserServiceService
+    
     ) { }
 
 
   ngOnInit() {
+    this.show = true
     this.dataToEdit(new account())
     this.userService.getUser()
       .subscribe(data => {

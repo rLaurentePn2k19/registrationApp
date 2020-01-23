@@ -14,6 +14,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -36,6 +37,7 @@ import { ErrorComponent } from './error/error.component'
     ErrorComponent
   ],
   imports: [
+    MatDividerModule,
     MatDialogModule,
     MatMenuModule,
     MatToolbarModule,
